@@ -37,7 +37,7 @@ python main.py --split_index N --n_epochs E --batch_size B --video_type 'dataset
 </pre>
 In the command above: N refers to index of the used data split, E refers to the number of training epochs (default value: 200), B refers to the batch size (default value for training in full-batch mode: 20 for SumMe, 40 for TVSum), and 'dataset_name' refers to the name of the used dataset (can be either 'SumMe' or 'TVSum').
 
-Alternatively, to train the model for all 5 splits, use the ['run_summe_splits.sh'](https://github.com/e-apostolidis/PGL-SUM/blob/main/model/run_summe_splits.sh) and/or ['run_tvsum_splits.sh'](https://github.com/e-apostolidis/PGL-SUM/blob/main/model/run_tvsum_splits.sh) script and do the following:
+Alternatively, to train the model for all 5 splits, use the ['run_summe_splits.sh'](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/run_summe_splits.sh) and/or ['run_tvsum_splits.sh'](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/run_tvsum_splits.sh) script and do the following:
 <pre>
 chmod +x run_summe_splits.sh    # Makes the script executable.
 chmod +x run_tvsum_splits.sh    # Makes the script executable.
@@ -53,10 +53,10 @@ The progress of the training can be monitored via the TensorBoard platform and b
 ## Configurations
 Setup for the training process:
 
-- In ['data_loader.py'](https://github.com/e-apostolidis/PGL-SUM/blob/main/model/data_loader.py), specify the path to the 'h5' file of the used dataset and the path to the 'json' file containing data about the utilized data splits.
-- In ['configs.py'](https://github.com/e-apostolidis/PGL-SUM/blob/main/model/configs.py), define the directory where the analysis results will be saved to.
+- In ['data_loader.py'](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/data_loader.py), specify the path to the 'h5' file of the used dataset and the path to the 'json' file containing data about the utilized data splits.
+- In ['configs.py'](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/configs.py), define the directory where the analysis results will be saved to.
     
-Arguments in ['configs.py'](https://github.com/e-apostolidis/PGL-SUM/blob/main/model/configs.py): 
+Arguments in ['configs.py'](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/configs.py): 
 <pre>
 --video_type: The used dataset for training the model. Can be either 'SumMe' or 'TVSum'.
 --input_size: The size of the input feature vectors (default value: 1024 for GoogLeNet features).
@@ -75,7 +75,7 @@ Arguments in ['configs.py'](https://github.com/e-apostolidis/PGL-SUM/blob/main/m
 </pre>
 
 ## Model Selection and Evaluation 
-The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, run ['evaluate_exp.sh'](https://github.com/e-apostolidis/PGL-SUM/blob/main/evaluation/evaluate_exp.sh). To run this file, specify: i) the path to the folder where the analysis results are stored, ii) the dataset, and iii) the used approach for computing the overal F-Score after comparing the generated summary with all the available user summaries (i.e., 'max' for SumMe and 'avg' for TVSum). For further details about the adopted structure of directories in our implementation, please check line [#6](https://github.com/e-apostolidis/PGL-SUM/blob/main/evaluation/evaluate_exp.sh#L6) and line [#11](https://github.com/e-apostolidis/PGL-SUM/blob/main/evaluation/evaluate_exp.sh#L11) of ['evaluate_exp.sh'](https://github.com/e-apostolidis/PGL-SUM/blob/main/evaluation/evaluate_exp.sh).
+The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, run ['evaluate_exp.sh'](https://github.com/e-apostolidis/PGL-SUM/blob/main/evaluation/evaluate_exp.sh). To run this file, specify: i) the path to the folder where the analysis results are stored, ii) the dataset, and iii) the used approach for computing the overal F-Score after comparing the generated summary with all the available user summaries (i.e., 'max' for SumMe and 'avg' for TVSum). For further details about the adopted structure of directories in our implementation, please check line [#6](https://github.com/e-apostolidis/PGL-SUM/blob/master/evaluation/evaluate_exp.sh#L6) and line [#11](https://github.com/e-apostolidis/PGL-SUM/blob/master/evaluation/evaluate_exp.sh#L11) of ['evaluate_exp.sh'](https://github.com/e-apostolidis/PGL-SUM/blob/master/evaluation/evaluate_exp.sh).
 
 ## License
 Copyright (c) 2021, Evlampios Apostolidis, Georgios Mpalaouras, Vasileios Mezaris, Ioannis Patras / CERTH-ITI. All rights reserved. This code is provided for academic, non-commercial use only. Redistribution and use in source and binary forms, with or without modification, are permitted for academic non-commercial use provided that the following conditions are met:
