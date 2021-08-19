@@ -14,7 +14,7 @@
 ## Data
 <div align="justify">
 
-Structured h5 files with the video features and annotations of the SumMe and TVSum datasets are available within the "data" folder. The GoogleNet features of the video frames were extracted by [Ke Zhang](https://github.com/kezhang-cs) and [Wei-Lun Chao](https://github.com/pujols) and the h5 files were obtained from [Kaiyang Zhou](https://github.com/KaiyangZhou/pytorch-vsumm-reinforce). These files have the following structure:
+Structured h5 files with the video features and annotations of the SumMe and TVSum datasets are available within the [data](https://github.com/e-apostolidis/PGL-SUM/tree/master/data) folder. The GoogleNet features of the video frames were extracted by [Ke Zhang](https://github.com/kezhang-cs) and [Wei-Lun Chao](https://github.com/pujols) and the h5 files were obtained from [Kaiyang Zhou](https://github.com/KaiyangZhou/pytorch-vsumm-reinforce). These files have the following structure:
 <pre>
 /key
     /features                 2D-array with shape (n_steps, feature-dimension)
@@ -35,7 +35,7 @@ Original videos and annotations for each dataset are also available in the autho
 ## Training
 <div align="justify">
 
-To train the model using one of the aforementioned datasets and for a number of randomly created splits of the dataset (where in each split 80% of the data is used for training and 20% for testing) use the corresponding JSON file that is included in the "data/splits" directory. This file contains the 5 randomly-generated splits that were utilized in our experiments.
+To train the model using one of the aforementioned datasets and for a number of randomly created splits of the dataset (where in each split 80% of the data is used for training and 20% for testing) use the corresponding JSON file that is included in the [data/splits](https://github.com/e-apostolidis/PGL-SUM/tree/master/data/splits) directory. This file contains the 5 randomly-generated splits that were utilized in our experiments.
 
 For training the model using a single split, run:
 ```shell-script
@@ -50,7 +50,7 @@ chmod +x run_tvsum_splits.sh    # Makes the script executable.
 ./run_summe_splits              # Runs the script. 
 ./run_tvsum_splits              # Runs the script.  
 ```
-Please note that after each training epoch the algorithm performs an evaluation step, using the trained model to compute the importance scores for the frames of each video of the test set. These scores are then used by the provided evaluation scripts to assess the overal performance of the model (in F-Score).
+Please note that after each training epoch the algorithm performs an evaluation step, using the trained model to compute the importance scores for the frames of each video of the test set. These scores are then used by the provided [evaluation](https://github.com/e-apostolidis/PGL-SUM/tree/master/evaluation) scripts to assess the overal performance of the model (in F-Score).
 
 The progress of the training can be monitored via the TensorBoard platform and by:
 - opening a command line (cmd) and running: `tensorboard --logdir=/path/to/log-directory --host=localhost`
@@ -96,7 +96,7 @@ For further details about the adopted structure of directories in our implementa
 
 ## License
 <div align="justify">
-Copyright (c) 2021, Evlampios Apostolidis, Georgios Mpalaouras, Vasileios Mezaris, Ioannis Patras / CERTH-ITI. All rights reserved. This code is provided for academic, non-commercial use only. Redistribution and use in source and binary forms, with or without modification, are permitted for academic non-commercial use provided that the following conditions are met:
+Copyright (c) 2021, Evlampios Apostolidis, Georgios Balaouras, Vasileios Mezaris, Ioannis Patras / CERTH-ITI. All rights reserved. This code is provided for academic, non-commercial use only. Redistribution and use in source and binary forms, with or without modification, are permitted for academic non-commercial use provided that the following conditions are met:
 
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation provided with the distribution.
