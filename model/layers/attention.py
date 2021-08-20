@@ -119,7 +119,7 @@ class SelfAttention(nn.Module):
             # Save the current head output
             outputs.append(y)
         y = self.out(torch.cat(outputs, dim=1))
-        return y, att_weights.clone()  # for now i don't care about weights (probably max or avg pooling)
+        return y, att_weights.clone()  # for now we don't deal with the weights (probably max or avg pooling)
 
 
 if __name__ == '__main__':

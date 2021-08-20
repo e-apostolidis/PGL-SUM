@@ -8,7 +8,7 @@ import json
 
 class VideoData(Dataset):
     def __init__(self, mode, video_type, split_index):
-        """ Custom Dataset class wrapper for loading the frame features and other characteristics.
+        """ Custom Dataset class wrapper for loading the frame features and ground truth importance scores.
 
         :param str mode: The mode of the model, train or test.
         :param str video_type: The Dataset being used, SumMe or TVSum.
@@ -48,13 +48,11 @@ class VideoData(Dataset):
         """ Function to be called for the `len` operator of `VideoData` Dataset. """
         self.len = len(self.split[self.mode+'_keys'])
         return self.len
-    
+
     def __getitem__(self, index):
         """ Function to be called for the index operator of `VideoData` Dataset.
-        train mode returns:
-        frame_features and gtscores
-        test mode returns:
-        frame_features and video name
+        train mode returns: frame_features and gtscores
+        test mode returns: frame_features and video name
 
         :param int index: The above-mentioned id of the data.
         """

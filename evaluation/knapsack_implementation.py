@@ -42,5 +42,5 @@ if __name__ == "__main__":
 	W = 7
 	n = len(val)
 	selected = knapSack(W, wt, val, n)
-	print(selected) 
+	print(selected)
 	"""

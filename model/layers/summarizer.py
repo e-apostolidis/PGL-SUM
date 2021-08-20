@@ -2,7 +2,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
 import math
 from layers.attention import SelfAttention
 
@@ -13,12 +12,12 @@ class MultiAttention(nn.Module):
         """ Class wrapping the MultiAttention part of PGL-SUM; its key modules and parameters.
 
         :param int input_size: The expected input feature size.
-        :param int output_size: The produced output feature size.
+        :param int output_size: The hidden feature size of the attention mechanisms.
         :param int freq: The frequency of the sinusoidal positional encoding.
         :param None | str pos_enc: The selected positional encoding [absolute, relative].
         :param None | int num_segments: The selected number of segments to split the videos.
         :param int heads: The selected number of global heads.
-        :param None | str fusion: The selected type of feature fusion. 
+        :param None | str fusion: The selected type of feature fusion.
         """
         super(MultiAttention, self).__init__()
 
@@ -42,7 +41,7 @@ class MultiAttention(nn.Module):
 
     def forward(self, x):
         """ Compute the weighted frame features, based on the global and locals (multi-head) attention mechanisms.
-        
+
         :param torch.Tensor x: Tensor with shape [T, input_size] containing the frame features.
         :return: A tuple of:
             weighted_value: Tensor with shape [T, input_size] containing the weighted frame features.
@@ -63,15 +62,11 @@ class MultiAttention(nn.Module):
                 weighted_local_value = F.normalize(weighted_local_value, p=2, dim=1)
                 if self.fusion == "add":
                     weighted_value[left_pos:right_pos] += weighted_local_value
-                    # attn_weights[left_pos:right_pos, left_pos:right_pos] += attn_local_weights
                 elif self.fusion == "mult":
                     weighted_value[left_pos:right_pos] *= weighted_local_value
-                    # attn_weights[left_pos:right_pos, left_pos:right_pos] *= attn_local_weights
                 elif self.fusion == "avg":
                     weighted_value[left_pos:right_pos] += weighted_local_value
                     weighted_value[left_pos:right_pos] /= 2
-                    # attn_weights[left_pos:right_pos, left_pos:right_pos] += attn_local_weights
-                    # attn_weights[left_pos:right_pos, left_pos:right_pos] /= 2
                 elif self.fusion == "max":
                     weighted_value[left_pos:right_pos] = torch.max(weighted_value[left_pos:right_pos].clone(),
                                                                    weighted_local_value)
@@ -83,14 +78,14 @@ class PGL_SUM(nn.Module):
     def __init__(self, input_size=1024, output_size=1024, freq=10000, pos_enc=None,
                  num_segments=None, heads=1, fusion=None):
         """ Class wrapping the PGL-SUM model; its key modules and parameters.
-        
+
         :param int input_size: The expected input feature size.
-        :param int output_size: The produced output feature size.
+        :param int output_size: The hidden feature size of the attention mechanisms.
         :param int freq: The frequency of the sinusoidal positional encoding.
         :param None | str pos_enc: The selected positional encoding [absolute, relative].
         :param None | int num_segments: The selected number of segments to split the videos.
         :param int heads: The selected number of global heads.
-        :param None | str fusion: The selected type of feature fusion. 
+        :param None | str fusion: The selected type of feature fusion.
         """
         super(PGL_SUM, self).__init__()
 
@@ -108,7 +103,7 @@ class PGL_SUM(nn.Module):
     def forward(self, frame_features):
         """ Produce frames importance scores from the frame features, using the PGL-SUM model.
 
-        :param torch.Tensor frame_features: Tensor of shape [T, input_size] containing the frame features produced by 
+        :param torch.Tensor frame_features: Tensor of shape [T, input_size] containing the frame features produced by
         using the pool5 layer of GoogleNet.
         :return: A tuple of:
             y: Tensor with shape [1, T] containing the frames importance scores in [0, 1].

@@ -19,7 +19,7 @@ def evaluate_summary(predicted_summary, user_summary, eval_method):
     for user in range(user_summary.shape[0]):
         G[:user_summary.shape[1]] = user_summary[user]
         overlapped = S & G
-        
+
         # Compute precision, recall, f-score
         precision = sum(overlapped)/sum(S)
         recall = sum(overlapped)/sum(G)

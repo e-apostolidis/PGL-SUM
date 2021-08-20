@@ -108,7 +108,7 @@ with Timer():
     ea.Reload()  # loads events from file
 
 tags = ea.Tags()
-''' Uncomment for logging 
+''' Uncomment for logging
 print(' ')
 print('Log summary:')
 for t in tags:
