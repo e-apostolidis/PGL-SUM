@@ -66,25 +66,25 @@ Setup for the training process:
  - In [`configs.py`](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/configs.py), define the directory where the analysis results will be saved to. </div>
    
 Arguments in [`configs.py`](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/configs.py): 
-Parameter name | Description | Default Value
-| ---: | :--- | :---:
-`--mode` | Mode for the configuration ['train', 'test']. | 'train'
-`--verbose` | Print or not training messages. | 'false'
-`--video_type` | The used dataset for training the model ['SumMe', 'TVSum']. | 'SumMe'
-`--input_size` | The size of the input feature vectors. | 1024
-`--seed` | Chosen number for generating reproducible random numbers. | 12345
-`--fusion` | The type of the used approach for feature fusion ['add', 'mult', 'avg', 'max']. | 'add' 
-`--n_segments` | The number of video segments; equal to the number of local attention mechanisms. | 4
-`--pos_enc` | The type of the applied positional encoding ['absolute', 'relative', None]. | 'absolute'
-`--heads` | Number of heads of the global attention mechanism. | 8 
-`--n_epochs` | The number of training epochs. | 200
-`--batch_size` | The size of the training batch, 20 for 'SumMe' and 40 for 'TVSum'. | 20 
-`--clip` | The gradient norm clipping parameter. | 5 
-`--lr` | The value of the adopted learning rate. | 5e-5 
-`--l2_req` | The value of the regularization factor. | 1e-5 
-`--split_index` | The index of the utilized data split (ranging between 0 and 4 in our experiments). | 0 
-`--init_type` | The weight initialization method ['xavier', 'normal', 'kaiming', 'orthogonal', None]. | 'xavier' 
-`--init_gain` | Scaling factor for the initialization methods. | None
+Parameter name | Description | Default Value | Options
+| ---: | :--- | :---: | :---:
+`--mode` | Mode for the configuration. | 'train' | 'train', 'test'
+`--verbose` | Print or not training messages. | 'false' | 'true', 'false'
+`--video_type` | Used dataset for training the model. | 'SumMe' | 'SumMe', 'TVSum'
+`--input_size` | Size of the input feature vectors. | 1024 | int > 0
+`--seed` | Chosen number for generating reproducible random numbers. | 12345 | None, int
+`--fusion` | Type of the used approach for feature fusion. | 'add' | None, 'add', 'mult', 'avg', 'max' 
+`--n_segments` | Number of video segments; equal to the number of local attention mechanisms. | 4 | None, int ≥ 2
+`--pos_enc` | Type of the applied positional encoding. | 'absolute' | None, 'absolute', 'relative'
+`--heads` | Number of heads of the global attention mechanism. | 8 | int > 0
+`--n_epochs` | Number of training epochs. | 200 | int > 0
+`--batch_size` | Size of the training batch, 20 for 'SumMe' and 40 for 'TVSum'. | 20 | 0 < int ≤ len(Dataset)
+`--clip` | Gradient norm clipping parameter. | 5 | float 
+`--lr` | Value of the adopted learning rate. | 5e-5 | float
+`--l2_req` | Value of the regularization factor. | 1e-5 | float
+`--split_index` | Index of the utilized data split. | 0 | 0 ≤ int ≤ 4
+`--init_type` | Weight initialization method. | 'xavier' | None, 'xavier', 'normal', 'kaiming', 'orthogonal'
+`--init_gain` | Scaling factor for the initialization methods. | None | None, float
 
 ## Model Selection and Evaluation 
 <div align="justify">
