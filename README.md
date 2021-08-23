@@ -16,7 +16,7 @@ Tested, checked and verifiend with:
 ## Data
 <div align="justify">
 
-Structured h5 files with the video features and annotations of the SumMe and TVSum datasets are available within the [data](https://github.com/e-apostolidis/PGL-SUM/tree/master/data) folder. The GoogleNet features of the video frames were extracted by [Ke Zhang](https://github.com/kezhang-cs) and [Wei-Lun Chao](https://github.com/pujols) and the h5 files were obtained from [Kaiyang Zhou](https://github.com/KaiyangZhou/pytorch-vsumm-reinforce). These files have the following structure:
+Structured h5 files with the video features and annotations of the SumMe and TVSum datasets are available within the [data](data) folder. The GoogleNet features of the video frames were extracted by [Ke Zhang](https://github.com/kezhang-cs) and [Wei-Lun Chao](https://github.com/pujols) and the h5 files were obtained from [Kaiyang Zhou](https://github.com/KaiyangZhou/pytorch-vsumm-reinforce). These files have the following structure:
 <pre>
 /key
     /features                 2D-array with shape (n_steps, feature-dimension)
@@ -30,14 +30,14 @@ Structured h5 files with the video features and annotations of the SumMe and TVS
     /gtsummary                1D-array with shape (n_steps), ground truth summary provided by user (used for training, e.g. maximum likelihood)
     /video_name (optional)    original video name, only available for SumMe dataset
 </pre>
-Original videos and annotations for each dataset are also available in the authors' project webpages:
-- TVSum dataset: https://github.com/yalesong/tvsum
-- SumMe dataset: https://gyglim.github.io/me/vsum/index.html#benchmark </div>
+Original videos and annotations for each dataset are also available in the authors' project webpages: 
+- <a href="https://github.com/yalesong/tvsum"><img src="https://img.shields.io/badge/Dataset-TVSum-green"/></a> <a href="https://gyglim.github.io/me/vsum/index.html#benchmark"><img src="https://img.shields.io/badge/Dataset-SumMe-blue"/></a>
+</div>
 
 ## Training
 <div align="justify">
 
-To train the model using one of the aforementioned datasets and for a number of randomly created splits of the dataset (where in each split 80% of the data is used for training and 20% for testing) use the corresponding JSON file that is included in the [data/splits](https://github.com/e-apostolidis/PGL-SUM/tree/master/data/splits) directory. This file contains the 5 randomly-generated splits that were utilized in our experiments.
+To train the model using one of the aforementioned datasets and for a number of randomly created splits of the dataset (where in each split 80% of the data is used for training and 20% for testing) use the corresponding JSON file that is included in the [data/splits](/data/splits) directory. This file contains the 5 randomly-generated splits that were utilized in our experiments.
 
 For training the model using a single split, run:
 ```shell-script
@@ -45,14 +45,14 @@ python main.py --split_index N --n_epochs E --batch_size B --video_type 'dataset
 ```
 where, `N` refers to index of the used data split, `E` refers to the number of training epochs, `B` refers to the batch size, and `dataset_name` refers to the name of the used dataset.
 
-Alternatively, to train the model for all 5 splits, use the [`run_summe_splits.sh`](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/run_summe_splits.sh) and/or [`run_tvsum_splits.sh`](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/run_tvsum_splits.sh) script and do the following:
+Alternatively, to train the model for all 5 splits, use the [`run_summe_splits.sh`](model/run_summe_splits.sh) and/or [`run_tvsum_splits.sh`](model/run_tvsum_splits.sh) script and do the following:
 ```shell-script
 chmod +x run_summe_splits.sh    # Makes the script executable.
 chmod +x run_tvsum_splits.sh    # Makes the script executable.
 ./run_summe_splits              # Runs the script. 
 ./run_tvsum_splits              # Runs the script.  
 ```
-Please note that after each training epoch the algorithm performs an evaluation step, using the trained model to compute the importance scores for the frames of each video of the test set. These scores are then used by the provided [evaluation](https://github.com/e-apostolidis/PGL-SUM/tree/master/evaluation) scripts to assess the overal performance of the model (in F-Score).
+Please note that after each training epoch the algorithm performs an evaluation step, using the trained model to compute the importance scores for the frames of each video of the test set. These scores are then used by the provided [evaluation](evaluation) scripts to assess the overal performance of the model (in F-Score).
 
 The progress of the training can be monitored via the TensorBoard platform and by:
 - opening a command line (cmd) and running: `tensorboard --logdir=/path/to/log-directory --host=localhost`
@@ -62,12 +62,12 @@ The progress of the training can be monitored via the TensorBoard platform and b
 <div align="justify">
 
 Setup for the training process:
- - In [`data_loader.py`](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/data_loader.py), specify the path to the h5 file of the used dataset and the path to the JSON file containing data about the utilized data splits.
- - In [`configs.py`](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/configs.py), define the directory where the analysis results will be saved to. </div>
+ - In [`data_loader.py`](model/data_loader.py), specify the path to the h5 file of the used dataset and the path to the JSON file containing data about the utilized data splits.
+ - In [`configs.py`](model/configs.py), define the directory where the analysis results will be saved to. </div>
    
-Arguments in [`configs.py`](https://github.com/e-apostolidis/PGL-SUM/blob/master/model/configs.py): 
+Arguments in [`configs.py`](model/configs.py): 
 Parameter name | Description | Default Value | Options
-| ---: | :--- | :---: | :---:
+| :--- | :--- | :---: | :---:
 `--mode` | Mode for the configuration. | 'train' | 'train', 'test'
 `--verbose` | Print or not training messages. | 'false' | 'true', 'false'
 `--video_type` | Used dataset for training the model. | 'SumMe' | 'SumMe', 'TVSum'
@@ -89,12 +89,12 @@ Parameter name | Description | Default Value | Options
 ## Model Selection and Evaluation 
 <div align="justify">
 
-The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, run [`evaluate_exp.sh`](https://github.com/e-apostolidis/PGL-SUM/blob/master/evaluation/evaluate_exp.sh). To run this file, specify:
+The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, run [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). To run this file, specify:
  - `$base_path/exp$exp_num`: the path to the folder where the analysis results are stored,
  - `$dataset`: the dataset being used, and
  - `$eval_method`: the used approach for computing the overal F-Score after comparing the generated summary with all the available user summaries (i.e., 'max' for SumMe and 'avg' for TVSum).
 
-For further details about the adopted structure of directories in our implementation, please check line [#6](https://github.com/e-apostolidis/PGL-SUM/blob/master/evaluation/evaluate_exp.sh#L6) and line [#11](https://github.com/e-apostolidis/PGL-SUM/blob/master/evaluation/evaluate_exp.sh#L11) of [`evaluate_exp.sh`](https://github.com/e-apostolidis/PGL-SUM/blob/master/evaluation/evaluate_exp.sh). </div>
+For further details about the adopted structure of directories in our implementation, please check line [#6](evaluation/evaluate_exp.sh#L6) and line [#11](evaluation/evaluate_exp.sh#L11) of [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). </div>
 
 ## License
 <div align="justify">
