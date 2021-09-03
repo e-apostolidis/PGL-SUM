@@ -66,7 +66,7 @@ Setup for the training process:
  - In [`configs.py`](model/configs.py), define the directory where the analysis results will be saved to. </div>
    
 Arguments in [`configs.py`](model/configs.py): 
-Parameter name | Description | Default Value | Options
+|Parameter name | Description | Default Value | Options
 | :--- | :--- | :---: | :---:
 `--mode` | Mode for the configuration. | 'train' | 'train', 'test'
 `--verbose` | Print or not training messages. | 'false' | 'true', 'false'
