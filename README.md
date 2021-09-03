@@ -9,7 +9,7 @@
 
 ## Main dependencies
 Tested, checked and verifiend with:
-`Python` | `PyTorch` | `CUDA Version` | `TensorBoard` | `TensorFlow` | `NumPy` | `H5py`
+|`Python` | `PyTorch` | `CUDA Version` | `TensorBoard` | `TensorFlow` | `NumPy` | `H5py`
 :---:|:---:|:---:|:---:|:---:|:---:|:---:|
 3.8(.8) | 1.7.1 | 11.4 | 2.4.1 | 2.3.0 | 1.18.5 | 2.10.0
 
