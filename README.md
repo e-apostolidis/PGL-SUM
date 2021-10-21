@@ -8,10 +8,10 @@
 - This software can be used for training a deep learning architecture which estimates frames' importance after modeling their dependencies with the help of global and local multi-head attention mechanisms that integrate a positional encoding component. Training is performed in a supervised manner based on ground-truth data (human-generated video summaries). After being trained on a collection of videos, the PGL-SUM model is capable of producing representative summaries for unseen videos, according to a user-specified time-budget about the summary duration. </div>
 
 ## Main dependencies
-Tested, checked and verifiend with:
-|`Python` | `PyTorch` | `CUDA Version` | `TensorBoard` | `TensorFlow` | `NumPy` | `H5py`
-:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-3.8(.8) | 1.7.1 | 11.4 | 2.4.1 | 2.3.0 | 1.18.5 | 2.10.0
+Developed, checked and verified on an `Ubuntu 20.04.3` machine with an `NVIDIA TITAN Xp` GPU. Main packages requirements:
+|`Python` | `PyTorch` | `CUDA Version` | `cuDNN Version` | `TensorBoard` | `TensorFlow` | `NumPy` | `H5py`
+:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+3.8(.8) | 1.7.1 | 11.0 | 8005 | 2.4.1 | 2.3.0 | 1.20.2 | 2.10.0
 
 ## Data
 <div align="justify">
