@@ -20,7 +20,7 @@ Structured h5 files with the video features and annotations of the SumMe and TVS
 <pre>
 /key
     /features                 2D-array with shape (n_steps, feature-dimension)
-    /gtscore                  1D-array with shape (n_steps), stores ground truth improtance score (used for training, e.g. regression loss)
+    /gtscore                  1D-array with shape (n_steps), stores ground truth importance score (used for training, e.g. regression loss)
     /user_summary             2D-array with shape (num_users, n_frames), each row is a binary vector (used for test)
     /change_points            2D-array with shape (num_segments, 2), each row stores indices of a segment
     /n_frame_per_seg          1D-array with shape (num_segments), indicates number of frames in each segment
@@ -52,7 +52,7 @@ chmod +x run_tvsum_splits.sh    # Makes the script executable.
 ./run_summe_splits              # Runs the script. 
 ./run_tvsum_splits              # Runs the script.  
 ```
-Please note that after each training epoch the algorithm performs an evaluation step, using the trained model to compute the importance scores for the frames of each video of the test set. These scores are then used by the provided [evaluation](evaluation) scripts to assess the overal performance of the model (in F-Score).
+Please note that after each training epoch the algorithm performs an evaluation step, using the trained model to compute the importance scores for the frames of each video of the test set. These scores are then used by the provided [evaluation](evaluation) scripts to assess the overall performance of the model (in F-Score).
 
 The progress of the training can be monitored via the TensorBoard platform and by:
 - opening a command line (cmd) and running: `tensorboard --logdir=/path/to/log-directory --host=localhost`
@@ -62,7 +62,7 @@ The progress of the training can be monitored via the TensorBoard platform and b
 <div align="justify">
 
 Setup for the training process:
- - In [`data_loader.py`](model/data_loader.py), specify the path to the h5 file of the used dataset and the path to the JSON file containing data about the utilized data splits.
+ - In [`data_loader.py`](model/data_loader.py), specify the path to the h5 file of the used dataset, and the path to the JSON file containing data about the utilized data splits.
  - In [`configs.py`](model/configs.py), define the directory where the analysis results will be saved to. </div>
    
 Arguments in [`configs.py`](model/configs.py): 
@@ -92,12 +92,25 @@ Arguments in [`configs.py`](model/configs.py):
 The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, run [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). To run this file, specify:
  - `$base_path/exp$exp_num`: the path to the folder where the analysis results are stored,
  - `$dataset`: the dataset being used, and
- - `$eval_method`: the used approach for computing the overal F-Score after comparing the generated summary with all the available user summaries (i.e., 'max' for SumMe and 'avg' for TVSum).
+ - `$eval_method`: the used approach for computing the overall F-Score after comparing the generated summary with all the available user summaries (i.e., 'max' for SumMe and 'avg' for TVSum).
 
 For further details about the adopted structure of directories in our implementation, please check line [#6](evaluation/evaluate_exp.sh#L6) and line [#11](evaluation/evaluate_exp.sh#L11) of [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). </div>
 
+## Trained models and Inference
+<div align="justify">
+
+We have released the [**trained models**](https://zenodo.org/) for our main experiments -namely `Table III` and `Table IV`-. The [`inference/inference.py`](inference/inference.py) script, lets you evaluate the -reported- trained models, for our 5 randomly-created data splits. Download the trained models, with the following script:
+``` bash
+sudo apt-get install unzip wget
+wget "url"
+unzip pretrained_models.zip -d inference/pretrained_models
+rm -f pretrained_models.zip
+```
+</div>
+
 ## License
 <div align="justify">
+    
 Copyright (c) 2021, Evlampios Apostolidis, Georgios Balaouras, Vasileios Mezaris, Ioannis Patras / CERTH-ITI. All rights reserved. This code is provided for academic, non-commercial use only. Redistribution and use in source and binary forms, with or without modification, are permitted for academic non-commercial use provided that the following conditions are met:
 
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
