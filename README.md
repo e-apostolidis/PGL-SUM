@@ -99,7 +99,7 @@ For further details about the adopted structure of directories in our implementa
 ## Trained models and Inference
 <div align="justify">
 
-We have released the [**trained models**](https://zenodo.org/) for our main experiments -namely `Table III` and `Table IV`-. The [`inference/inference.py`](inference/inference.py) script, lets you evaluate the -reported- trained models, for our 5 randomly-created data splits. Download the trained models, with the following script:
+We have released the [**trained models**](https://zenodo.org/) for our main experiments -namely `Table III` and `Table IV`- of our ISM 2021 paper. The [`inference/inference.py`](inference/inference.py) script, lets you evaluate the -reported- trained models, for our 5 randomly-created data splits. Download the trained models, with the following script:
 ``` bash
 sudo apt-get install unzip wget
 wget "url"
