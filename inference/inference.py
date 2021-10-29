@@ -54,17 +54,17 @@ if __name__ == "__main__":
     eval_metric = 'avg' if dataset.lower() == 'tvsum' else 'max'
     for split_id in range(5):
         # Model data
-        model_path = f"/home/mpalaourg/PycharmProjects/GitHub_Upload/inference/pretrained_models/{mode}_models/{dataset}/models/split{split_id}"
+        model_path = f"../PGL-SUM/inference/pretrained_models/{mode}_models/{dataset}/models/split{split_id}"
         model_file = [f for f in listdir(model_path) if isfile(join(model_path, f))]
 
         # Read current split
-        split_file = f"/home/mpalaourg/PycharmProjects/GitHub_Upload/data/splits/{dataset.lower()}_splits.json"
+        split_file = f"../PGL-SUM/data/splits/{dataset.lower()}_splits.json"
         with open(split_file) as f:
             data = json.loads(f.read())
             test_keys = data[split_id]["test_keys"]
 
         # Dataset path
-        dataset_path = f"/home/mpalaourg/PycharmProjects/GitHub_Upload/data/{dataset}/eccv16_dataset_{dataset.lower()}_google_pool5.h5"
+        dataset_path = f"../PGL-SUM/data/{dataset}/eccv16_dataset_{dataset.lower()}_google_pool5.h5"
 
         # Create model with paper reported configuration
         trained_model = PGL_SUM(input_size=1024, output_size=1024, num_segments=4, heads=8,
