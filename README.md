@@ -89,7 +89,7 @@ Arguments in [`configs.py`](model/configs.py):
 ## Model Selection and Evaluation 
 <div align="justify">
 
-The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, define the [`dataset_path`](evaluation/compute_fscores.py#L25) in [`evaluation/compute_fscores.py`](evaluation/compute_fscores.py) and run [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). To run this file, specify:
+The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, define the [`dataset_path`](evaluation/compute_fscores.py#L25) in [`compute_fscores.py`](evaluation/compute_fscores.py) and run [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). To run this file, specify:
  - [`base_path/exp$exp_num`](evaluation/evaluate_exp.sh#L6-L7): the path to the folder where the analysis results are stored,
  - [`$dataset`](evaluation/evaluate_exp.sh#L8): the dataset being used, and
  - [`$eval_method`](evaluation/evaluate_exp.sh#L9): the used approach for computing the overall F-Score after comparing the generated summary with all the available user summaries (i.e., 'max' for SumMe and 'avg' for TVSum).
@@ -101,7 +101,7 @@ For further details about the adopted structure of directories in our implementa
 ## Trained models and Inference
 <div align="justify">
 
-We have released the [**trained models**](https://doi.org/10.5281/zenodo.5635735) for our main experiments -namely `Table III` and `Table IV`- of our ISM 2021 paper. The [`inference/inference.py`](inference/inference.py) script, lets you evaluate the -reported- trained models, for our 5 randomly-created data splits. Firstly, download the trained models, with the following script:
+We have released the [**trained models**](https://doi.org/10.5281/zenodo.5635735) for our main experiments -namely `Table III` and `Table IV`- of our ISM 2021 paper. The [`inference.py`](inference/inference.py) script, lets you evaluate the -reported- trained models, for our 5 randomly-created data splits. Firstly, download the trained models, with the following script:
 ``` bash
 sudo apt-get install unzip wget
 wget "https://zenodo.org/record/5635735/files/pretrained_models.zip?download=1" -O pretrained_models.zip
