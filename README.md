@@ -89,11 +89,13 @@ Arguments in [`configs.py`](model/configs.py):
 ## Model Selection and Evaluation 
 <div align="justify">
 
-The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, run [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). To run this file, specify:
- - [`$base_path/exp$exp_num`](evaluation/evaluate_exp.sh#L6-L7): the path to the folder where the analysis results are stored,
+The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, define the [`dataset_path`](evaluation/compute_fscores.py#L25) in [`evaluation/compute_fscores.py`](evaluation/compute_fscores.py) and run [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). To run this file, specify:
+ - [`base_path/exp$exp_num`](evaluation/evaluate_exp.sh#L6-L7): the path to the folder where the analysis results are stored,
  - [`$dataset`](evaluation/evaluate_exp.sh#L8): the dataset being used, and
  - [`$eval_method`](evaluation/evaluate_exp.sh#L9): the used approach for computing the overall F-Score after comparing the generated summary with all the available user summaries (i.e., 'max' for SumMe and 'avg' for TVSum).
-
+```bash
+sh evaluation/evaluate_exp.sh $exp_num $dataset $eval_method
+```
 For further details about the adopted structure of directories in our implementation, please check line [#6](evaluation/evaluate_exp.sh#L6) and line [#11](evaluation/evaluate_exp.sh#L11) of [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). </div>
 
 ## Trained models and Inference
