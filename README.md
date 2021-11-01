@@ -40,17 +40,17 @@ Original videos and annotations for each dataset are also available in the datas
 To train the model using one of the aforementioned datasets and for a number of randomly created splits of the dataset (where in each split 80% of the data is used for training and 20% for testing) use the corresponding JSON file that is included in the [data/splits](/data/splits) directory. This file contains the 5 randomly-generated splits that were utilized in our experiments.
 
 For training the model using a single split, run:
-```shell-script
-python main.py --split_index N --n_epochs E --batch_size B --video_type 'dataset_name'
+```bash
+python model/main.py --split_index N --n_epochs E --batch_size B --video_type 'dataset_name'
 ```
-where, `N` refers to index of the used data split, `E` refers to the number of training epochs, `B` refers to the batch size, and `dataset_name` refers to the name of the used dataset.
+where, `N` refers to the index of the used data split, `E` refers to the number of training epochs, `B` refers to the batch size, and `dataset_name` refers to the name of the used dataset.
 
 Alternatively, to train the model for all 5 splits, use the [`run_summe_splits.sh`](model/run_summe_splits.sh) and/or [`run_tvsum_splits.sh`](model/run_tvsum_splits.sh) script and do the following:
 ```shell-script
-chmod +x run_summe_splits.sh    # Makes the script executable.
-chmod +x run_tvsum_splits.sh    # Makes the script executable.
-./run_summe_splits              # Runs the script. 
-./run_tvsum_splits              # Runs the script.  
+chmod +x model/run_summe_splits.sh    # Makes the script executable.
+chmod +x model/run_tvsum_splits.sh    # Makes the script executable.
+./model/run_summe_splits.sh           # Runs the script. 
+./model/run_tvsum_splits.sh           # Runs the script.  
 ```
 Please note that after each training epoch the algorithm performs an evaluation step, using the trained model to compute the importance scores for the frames of each video of the test set. These scores are then used by the provided [evaluation](evaluation) scripts to assess the overall performance of the model (in F-Score).
 
@@ -90,22 +90,27 @@ Arguments in [`configs.py`](model/configs.py):
 <div align="justify">
 
 The utilized model selection criterion relies on the post-processing of the calculated losses over the training epochs and enables the selection of a well-trained model by indicating the training epoch. To evaluate the trained models of the architecture and automatically select a well-trained model, run [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). To run this file, specify:
- - `$base_path/exp$exp_num`: the path to the folder where the analysis results are stored,
- - `$dataset`: the dataset being used, and
- - `$eval_method`: the used approach for computing the overall F-Score after comparing the generated summary with all the available user summaries (i.e., 'max' for SumMe and 'avg' for TVSum).
+ - [`$base_path/exp$exp_num`](evaluation/evaluate_exp.sh#L6-L7): the path to the folder where the analysis results are stored,
+ - [`$dataset`](evaluation/evaluate_exp.sh#L8): the dataset being used, and
+ - [`$eval_method`](evaluation/evaluate_exp.sh#L9): the used approach for computing the overall F-Score after comparing the generated summary with all the available user summaries (i.e., 'max' for SumMe and 'avg' for TVSum).
 
 For further details about the adopted structure of directories in our implementation, please check line [#6](evaluation/evaluate_exp.sh#L6) and line [#11](evaluation/evaluate_exp.sh#L11) of [`evaluate_exp.sh`](evaluation/evaluate_exp.sh). </div>
 
 ## Trained models and Inference
 <div align="justify">
 
-We have released the [**trained models**](https://doi.org/10.5281/zenodo.5635735) for our main experiments -namely `Table III` and `Table IV`- of our ISM 2021 paper. The [`inference/inference.py`](inference/inference.py) script, lets you evaluate the -reported- trained models, for our 5 randomly-created data splits. Download the trained models, with the following script:
+We have released the [**trained models**](https://doi.org/10.5281/zenodo.5635735) for our main experiments -namely `Table III` and `Table IV`- of our ISM 2021 paper. The [`inference/inference.py`](inference/inference.py) script, lets you evaluate the -reported- trained models, for our 5 randomly-created data splits. Firstly, download the trained models, with the following script:
 ``` bash
 sudo apt-get install unzip wget
 wget "https://zenodo.org/record/5635735/files/pretrained_models.zip?download=1" -O pretrained_models.zip
 unzip pretrained_models.zip -d inference
 rm -f pretrained_models.zip
 ```
+Then, specify the PATHs for the [`model`](inference/inference.py#L57), the [`split_file`](inference/inference.py#L61) and the [`dataset`](inference/inference.py#L67) in use. Finally, run the script with the following syntax
+```shell-script
+python inference/inference.py --table ID --dataset 'dataset_name'
+```
+where, `ID` refers to the id of the reported table, and `dataset_name` refers to the name of the used dataset.
 </div>
 
 ## License
