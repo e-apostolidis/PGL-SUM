@@ -117,9 +117,10 @@ where, `ID` refers to the id of the reported table, and `dataset_name` refers to
 
 ## Citation
 <div align="justify">
-If you find our work, code or pretrained models, useful in your work, please cite the following publication: <br>
+    
+If you find our work, code or pretrained models, useful in your work, please cite the following publication:
 
-E. Apostolidis, G. Balaouras, V. Mezaris and I. Patras, "Combining Global and Local Attention with Positional Encoding for Video Summarization," <i>2021 IEEE International Symposium on Multimedia (ISM)</i>, 2021, pp. 226-234, doi: 10.1109/ISM52913.2021.00045.
+E. Apostolidis, G. Balaouras, V. Mezaris, I. Patras, "Combining Global and Local Attention with Positional Encoding for Video Summarization", Proc. IEEE Int. Symposium on Multimedia (ISM), Dec. 2021.
 </div>
 
 BibTeX:
