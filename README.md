@@ -1,6 +1,6 @@
 # PGL-SUM: Combining Global and Local Attention with Positional Encoding for Video Summarization
 
-## PyTorch Implementation of PGL-SUM
+## PyTorch Implementation of PGL-SUM [[Paper](https://www.iti.gr/~bmezaris/publications/ism2021a_preprint.pdf)] [[DOI](https://doi.org/10.1109/ISM52913.2021.00045)] [[Cite](https://github.com/e-apostolidis/PGL-SUM#citation)]
 <div align="justify">
 
 - From **"PGL-SUM: Combining Global and Local Attention with Positional Encoding for Video Summarization"**, Proc. IEEE ISM 2021.
@@ -114,6 +114,26 @@ python inference/inference.py --table ID --dataset 'dataset_name'
 ```
 where, `ID` refers to the id of the reported table, and `dataset_name` refers to the name of the used dataset.
 </div>
+
+## Citation
+<div align="justify">
+If you find our work, code or pretrained models, useful in your work, please cite the following publication: <br>
+
+E. Apostolidis, G. Balaouras, V. Mezaris and I. Patras, "Combining Global and Local Attention with Positional Encoding for Video Summarization," <i>2021 IEEE International Symposium on Multimedia (ISM)</i>, 2021, pp. 226-234, doi: 10.1109/ISM52913.2021.00045.
+</div>
+
+BibTeX:
+
+```
+@INPROCEEDINGS{9666088,
+    author    = {Apostolidis, Evlampios and Balaouras, Georgios and Mezaris, Vasileios and Patras, Ioannis},
+    title     = {Combining Global and Local Attention with Positional Encoding for Video Summarization},
+    booktitle = {2021 IEEE International Symposium on Multimedia (ISM)},
+    month     = {December},
+    year      = {2021},
+    pages     = {226-234}
+}
+```
 
 ## License
 <div align="justify">
