@@ -1,9 +1,9 @@
-# PGL-SUM: Combining Global and Local Attention with Positional Encoding for Video Summarization
+# Combining Global and Local Attention with Positional Encoding for Video Summarization
 
 ## PyTorch Implementation of PGL-SUM [[Paper](https://www.iti.gr/~bmezaris/publications/ism2021a_preprint.pdf)] [[DOI](https://doi.org/10.1109/ISM52913.2021.00045)] [[Cite](https://github.com/e-apostolidis/PGL-SUM#citation)]
 <div align="justify">
 
-- From **"PGL-SUM: Combining Global and Local Attention with Positional Encoding for Video Summarization"**, Proc. IEEE ISM 2021.
+- From **"Combining Global and Local Attention with Positional Encoding for Video Summarization"**, Proc. IEEE ISM 2021.
 - Written by Evlampios Apostolidis, Georgios Balaouras, Vasileios Mezaris and Ioannis Patras.
 - This software can be used for training a deep learning architecture which estimates frames' importance after modeling their dependencies with the help of global and local multi-head attention mechanisms that integrate a positional encoding component. Training is performed in a supervised manner based on ground-truth data (human-generated video summaries). After being trained on a collection of videos, the PGL-SUM model is capable of producing representative summaries for unseen videos, according to a user-specified time-budget about the summary duration. </div>
 
