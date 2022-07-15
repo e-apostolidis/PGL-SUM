@@ -115,6 +115,18 @@ python inference/inference.py --table ID --dataset 'dataset_name'
 where, `ID` refers to the id of the reported table, and `dataset_name` refers to the name of the used dataset.
 </div>
 
+### Additional evaluation results
+<div align="justify">
+
+Given the above pre-trained models, we present some additional evaluation results following the rank-based evaluation protocol proposed [here](https://openaccess.thecvf.com/content_CVPR_2019/papers/Otani_Rethinking_the_Evaluation_of_Video_Summaries_CVPR_2019_paper), and the diversity measure described [here](https://ieeexplore.ieee.org/document/9275314). Moreover, we provide results with regards to the trainable parameters and the required time for training. The code for implementing the rank-based evaluation protocol is available at [CA-SUM](https://github.com/e-apostolidis/CA-SUM/blob/main/inference/evaluation_metrics.py#L40), and the summary diversity was measured using the relevant code from [DSNet](https://github.com/li-plus/DSNet/blob/1804176e2e8b57846beb063667448982273fca89/src/helpers/vsumm_helper.py#L122).
+</div>
+
+|Dataset | Spearman's ρ | Kendall's τ | Summary Diversity | Params (M) | Train time<br>(sec / epoch)
+| :---: | :---: | :---: | :---: | :---: | :---:
+SumMe | - | - | 0.631 | 9.44 | 0.63
+TVSum | 0.206 | 0.157 | 0.488 | 9.44 | 1.17
+
+
 ## Citation
 <div align="justify">
     
