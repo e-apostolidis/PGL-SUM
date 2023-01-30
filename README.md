@@ -163,4 +163,4 @@ This software is provided by the authors "as is" and any express or implied warr
 <div align="justify"> This work was supported by the EU Horizon 2020 programme under grant agreement H2020-832921 MIRROR, and by EPSRC under grant No. EP/R026424/1. </div>
 
 ## Re-implementation in ModelScope
-A re-implementation of our algorithm also appears in [ModelScope](https://www.modelscope.cn/models/damo/cv_googlenet_pgl-video-summarization/summary). Please note that we have not tested this re-implementation and therefore cannot confirm if it fully reproduces our original implementation.
+A re-implementation of PGL-SUM also appears in [ModelScope](https://www.modelscope.cn/models/damo/cv_googlenet_pgl-video-summarization/summary). Please note that we have not tested this re-implementation and therefore cannot confirm if it fully reproduces our original implementation.
